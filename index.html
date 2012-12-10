@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  </head>
+  <body>
+    <div id="me">
+    </div>
+  </body>
+</html>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<script language="javascript">
+var bigdata = [
+{"ratings": 1201290, "genres": ["Book Club", "Action", "Young Adult", "Science Fiction", "Adventure", "Survival", "Thriller", "Science Fiction Fantasy", "Novels", "Suspense", "Young Adult", "Teen"], "score": 4.47, "title": "The Hunger Games"} ,
+{"ratings": 1335480, "genres": ["Young Adult", "Fantasy", "Paranormal", "Vampires", "Romance", "Fantasy", "Paranormal", "Romance", "Paranormal Romance", "Young Adult", "Teen", "Fantasy", "Supernatural", "Fantasy", "Urban Fantasy", "Shapeshifters", "Werewolves"], "score": 3.6, "title": "Twilight"} ,
+{"ratings": 741966, "genres": ["Fantasy", "Young Adult", "Fantasy", "Magic", "Childrens", "Adventure", "Science Fiction Fantasy", "Young Adult", "Teen", "Novels", "Classics", "Fantasy", "Paranormal"], "score": 4.36, "title": "Harry Potter and the Order of the Phoenix"} ,
+{"ratings": 778480, "genres": ["Childrens", "Adventure", "Science Fiction Fantasy", "Fantasy", "Young Adult", "Teen", "Novels", "Classics", "European Literature", "British Literature", "Young Adult", "Paranormal", "Witches"], "score": 4.43, "title": "Harry Potter and the Goblet of Fire"} ,
+{"ratings": 794556, "genres": ["Fantasy", "Young Adult", "Childrens", "Fantasy", "Magic", "Adventure", "Science Fiction Fantasy", "Novels", "Young Adult", "Teen", "Classics", "Fantasy", "Paranormal"], "score": 4.43, "title": "Harry Potter and the Prisoner of Azkaban"} ,
+{"ratings": 745651, "genres": ["Young Adult", "Childrens", "Adventure", "Science Fiction Fantasy", "Fantasy", "Young Adult", "Teen", "Novels", "Classics", "Fantasy", "Paranormal", "European Literature", "British Literature"], "score": 4.45, "title": "Harry Potter and the Half-Blood Prince"} ,
+{"ratings": 1253595, "genres": ["Classics", "Historical Fiction", "Literature", "Academic", "School", "Young Adult", "Academic", "Read For School", "Novels", "Book Club", "Young Adult", "High School", "Literature", "American"], "score": 4.21, "title": "To Kill a Mockingbird"} ,
+{"ratings": 391571, "genres": ["Classics", "Historical Fiction", "Romance", "Literature", "Romance", "Historical Romance", "War", "Military History", "Civil War", "Novels", "Adult", "Adult Fiction"], "score": 4.21, "title": "Gone With the Wind"} ,
+{"ratings": 771273, "genres": ["Fantasy", "Young Adult", "Childrens", "Fantasy", "Magic", "Adventure", "Science Fiction Fantasy", "Novels", "Young Adult", "Teen", "Classics", "Fantasy", "Paranormal"], "score": 4.23, "title": "Harry Potter and the Chamber of Secrets"} ,
+{"ratings": 629272, "genres": ["Young Adult", "Fantasy", "Paranormal", "Vampires", "Romance", "Fantasy", "Paranormal", "Romance", "Paranormal Romance", "Shapeshifters", "Werewolves", "Young Adult", "Teen", "Fantasy", "Supernatural", "Fantasy", "Urban Fantasy"], "score": 3.79, "title": "Eclipse"} ,
+{"ratings": 598687, "genres": ["Young Adult", "Fantasy", "Paranormal", "Vampires", "Romance", "Paranormal Romance", "Shapeshifters", "Werewolves", "Young Adult", "Teen", "Fantasy", "Supernatural", "Fantasy", "Urban Fantasy", "Womens Fiction", "Chick Lit", "Science Fiction Fantasy"], "score": 3.75, "title": "Breaking Dawn"} ,
+{"ratings": 305914, "genres": ["Childrens", "Childrens", "Picture Books", "Classics", "Poetry", "Young Adult", "Childrens", "Juvenile", "Fantasy", "Kids", "Literature", "Inspirational"], "score": 4.37, "title": "The Giving Tree"} ,
+{"ratings": 175247, "genres": ["Fantasy", "Classics", "Young Adult", "Childrens", "Christian", "Science Fiction Fantasy", "Adventure", "Christian Fiction", "Religion", "Literature"], "score": 4.22, "title": "The Chronicles of Narnia"} ,
+{"ratings": 432777, "genres": ["Science Fiction", "Humor", "Fantasy", "Classics", "Science Fiction Fantasy", "Humor", "Comedy", "Humor", "Funny", "Adventure", "Novels", "Adult"], "score": 4.13, "title": "The Hitchhiker's Guide to the Galaxy"} ,
+{"ratings": 834919, "genres": ["Classics", "Literature", "Fantasy", "Science Fiction", "Dystopia", "Academic", "School", "Politics", "Science Fiction", "Novels", "Academic", "Read For School", "Young Adult", "High School"], "score": 3.73, "title": "Animal Farm"} ,
+{"ratings": 651315, "genres": ["Young Adult", "Fantasy", "Paranormal", "Vampires", "Romance", "Fantasy", "Paranormal", "Romance", "Paranormal Romance", "Shapeshifters", "Werewolves", "Young Adult", "Teen", "Fantasy", "Supernatural", "Fantasy", "Urban Fantasy"], "score": 3.6, "title": "New Moon"} ,
+{"ratings": 771999, "genres": ["Fantasy", "Young Adult", "Fantasy", "Magic", "Childrens", "Adventure", "Science Fiction Fantasy", "Young Adult", "Teen", "Novels", "Classics", "Fantasy", "Paranormal"], "score": 4.53, "title": "Harry Potter and the Deathly Hallows"} ,
+{"ratings": 808484, "genres": ["Classics", "Romance", "Literature", "Historical Fiction", "Novels", "European Literature", "British Literature", "Romance", "Historical Romance", "Classics", "Classic Literature", "Academic", "School", "Book Club"], "score": 4.23, "title": "Pride and Prejudice"} ,
+{"ratings": 335962, "genres": ["Classics", "Romance", "Literature", "Gothic", "Historical Fiction", "European Literature", "British Literature", "Classics", "Classic Literature", "Academic", "School", "Literature", "19th Century", "Book Club"], "score": 3.75, "title": "Wuthering Heights"} ,
+{"ratings": 668730, "genres": ["Historical Fiction", "Romance", "Cultural", "Japan", "Book Club", "Classics", "Adult", "Novels", "Adult Fiction", "Literature", "Contemporary"], "score": 3.99, "title": "Memoirs of a Geisha"} ,
+{"ratings": 70789, "genres": ["Fantasy", "Young Adult", "Fantasy", "Magic", "Childrens", "Adventure", "Classics", "Science Fiction Fantasy", "Paranormal", "Witches", "Novels", "Fantasy", "Paranormal"], "score": 4.71, "title": "Harry Potter Boxset"} ,
+{"ratings": 590411, "genres": ["Romance", "Fantasy", "Science Fiction", "Time Travel", "Science Fiction", "Book Club", "Womens Fiction", "Chick Lit", "Contemporary", "Adult", "Adult Fiction", "Novels"], "score": 3.91, "title": "The Time Traveler's Wife"} ,
+{"ratings": 137364, "genres": ["genre-classics", "Classics", "Fantasy", "Childrens", "Young Adult", "Literature", "Adventure", "Novels", "European Literature", "British Literature", "Classics", "Classic Literature", "Literature", "19th Century"], "score": 4.03, "title": "Alice's Adventures in Wonderland &amp; Through the Looking-Glass"} ,
+{"ratings": 734531, "genres": ["Science Fiction", "Dystopia", "Young Adult", "Science Fiction Fantasy", "Fantasy", "Action", "Book Club", "Science Fiction", "Adventure", "Survival", "Thriller", "Young Adult", "Teen"], "score": 4.32, "title": "Catching Fire"} ,
+{"ratings": 816999, "genres": ["Classics", "Plays", "Romance", "Drama", "Academic", "School", "Literature", "Academic", "Read For School", "Young Adult", "High School", "Poetry", "Classics", "Classic Literature"], "score": 3.72, "title": "Romeo and Juliet"} ,
+{"ratings": 900927, "genres": ["Mystery", "Thriller", "Suspense", "Historical Fiction", "Thriller", "Mystery Thriller", "Adventure", "Novels", "Adult Fiction", "Adult", "Religion"], "score": 3.64, "title": "The Da Vinci Code"} ,
+{"ratings": 212456, "genres": ["Classics", "Young Adult", "Childrens", "Historical Fiction", "Cultural", "Canada", "Literature", "Childrens", "Juvenile", "Novels", "Young Adult", "Coming Of Age", "Romance"], "score": 4.21, "title": "Anne of Green Gables"} ,
+{"ratings": 784306, "genres": ["Classics", "Young Adult", "Literature", "Academic", "School", "Science Fiction", "Dystopia", "Academic", "Read For School", "Novels", "Young Adult", "High School", "Adventure", "Horror"], "score": 3.58, "title": "Lord of the Flies"} ,
+{"ratings": 151157, "genres": ["Classics", "Cultural", "Russia", "Literature", "Literature", "Russian Literature", "Novels", "Mystery", "Crime", "Academic", "School", "Philosophy", "Literature", "19th Century", "Classics", "Classic Literature"], "score": 4.11, "title": "Crime and Punishment"} ,
+{"ratings": 330758, "genres": ["Science Fiction", "Young Adult", "Fantasy", "Science Fiction Fantasy", "Classics", "Science Fiction", "Dystopia", "Book Club", "War", "Adventure", "Novels"], "score": 4.26, "title": "Ender's Game"} ,
+{"ratings": 330139, "genres": ["Childrens", "Classics", "Young Adult", "Fantasy", "Animals", "Childrens", "Juvenile", "Academic", "School", "Kids", "Childrens", "Middle Grade", "Childrens", "Chapter Books"], "score": 4.1, "title": "Charlotte's Web"} ,
+{"ratings": 270796, "genres": ["Fantasy", "Young Adult", "Classics", "Science Fiction", "Childrens", "Science Fiction Fantasy", "Science Fiction", "Time Travel", "Adventure", "Childrens", "Juvenile", "Childrens", "Middle Grade"], "score": 4.04, "title": "A Wrinkle in Time"} ,
+{"ratings": 265913, "genres": ["Classics", "Historical Fiction", "Literature", "Cultural", "France", "Novels", "European Literature", "French Literature", "Classics", "Classic Literature", "Romance", "Literature", "19th Century", "Drama"], "score": 3.99, "title": "Les Mis\u00e9rables"} ,
+{"ratings": 511708, "genres": ["Classics", "Philosophy", "Fantasy", "Book Club", "Novels", "Spirituality", "Inspirational", "Literature", "Adventure", "Adult Fiction"], "score": 3.67, "title": "The Alchemist"} ,
+{"ratings": 284702, "genres": ["Fantasy", "Classics", "Romance", "Humor", "Young Adult", "Adventure", "Science Fiction Fantasy", "Humor", "Comedy", "Fantasy", "Fairy Tales", "Humor", "Funny"], "score": 4.22, "title": "The Princess Bride"} ,
+{"ratings": 199651, "genres": ["Classics", "Horror", "Literature", "Fantasy", "Gothic", "Novels", "European Literature", "British Literature", "Classics", "Classic Literature", "Book Club", "European Literature", "Irish Literature"], "score": 3.98, "title": "The Picture of Dorian Gray"} ,
+{"ratings": 224766, "genres": ["Classics", "Historical Fiction", "Literature", "Academic", "School", "Novels", "Literature", "American", "Young Adult", "High School", "Classics", "Classic Literature", "Academic", "Read For School", "Adult Fiction"], "score": 3.83, "title": "The Grapes of Wrath"} ,
+{"ratings": 1469408, "genres": ["Young Adult", "Childrens", "Fantasy", "Magic", "Adventure", "Science Fiction Fantasy", "Classics", "Novels", "Young Adult", "Teen", "Fantasy", "Paranormal", "Childrens", "Juvenile"], "score": 4.34, "title": "Harry Potter and the Sorcerer's Stone"} ,
+{"ratings": 548002, "genres": ["Classics", "Romance", "Literature", "Historical Fiction", "Gothic", "European Literature", "British Literature", "Novels", "Classics", "Classic Literature", "Book Club", "Academic", "School"], "score": 4.05, "title": "Jane Eyre"} ,
+{"ratings": 229888, "genres": ["Childrens", "Childrens", "Picture Books", "Classics", "Fantasy", "Young Adult", "Adventure", "Kids", "Childrens", "Juvenile", "Animals", "Humor"], "score": 4.27, "title": "Where the Wild Things Are"} ,
+{"ratings": 220531, "genres": ["Classics", "Plays", "Drama", "Academic", "School", "Literature", "Plays", "Theatre", "Academic", "Read For School", "Young Adult", "High School", "Poetry", "Tragedy"], "score": 3.99, "title": "Hamlet"} ,
+{"ratings": 705802, "genres": ["Classics", "Literature", "Academic", "School", "Historical Fiction", "Academic", "Read For School", "Novels", "Young Adult", "High School", "Literature", "American", "Classics", "Classic Literature", "Adult"], "score": 3.74, "title": "Of Mice and Men"} ,
+{"ratings": 627246, "genres": ["Classics", "Literature", "Young Adult", "Historical Fiction", "Academic", "School", "Adventure", "Novels", "Literature", "American", "Childrens", "Academic", "Read For School"], "score": 3.76, "title": "The Adventures of Huckleberry Finn"} ,
+{"ratings": 291048, "genres": ["Classics", "Historical Fiction", "European Literature", "Spanish Literature", "Book Club", "Cultural", "Latin American", "Literary Fiction", "Adult Fiction", "Contemporary", "Classics", "Modern Classics", "Adult"], "score": 3.92, "title": "One Hundred Years of Solitude"} ,
+{"ratings": 213556, "genres": ["Classics", "Horror", "Paranormal", "Vampires", "Fantasy", "Gothic", "Literature", "Fantasy", "Paranormal", "Fantasy", "Supernatural", "Novels", "Classics", "Classic Literature"], "score": 3.9, "title": "Dracula"} ,
+{"ratings": 437121, "genres": ["Classics", "Science Fiction", "Science Fiction", "Dystopia", "Literature", "Academic", "School", "Science Fiction Fantasy", "Fantasy", "Novels", "Academic", "Read For School", "Book Club"], "score": 3.91, "title": "Fahrenheit 451"} ,
+{"ratings": 725763, "genres": ["Mystery", "Young Adult", "Fantasy", "Contemporary", "Book Club", "Adult Fiction", "Adult", "Mystery", "Crime", "Drama", "Novels"], "score": 3.67, "title": "The Lovely Bones"} ,
+{"ratings": 466389, "genres": ["Classics", "Science Fiction", "Science Fiction", "Dystopia", "Literature", "Academic", "School", "Novels", "Science Fiction Fantasy", "Fantasy", "Philosophy", "Young Adult", "High School"], "score": 3.88, "title": "Brave New World"} ,
+{"ratings": 523850, "genres": ["Book Club", "Adult Fiction", "Adult", "Contemporary", "Animals", "Novels", "Drama", "Literature", "Womens Fiction", "Chick Lit", "Literary Fiction"], "score": 4.05, "title": "Water for Elephants"} ,
+{"ratings": 182172, "genres": ["Childrens", "Childrens", "Picture Books", "Classics", "Poetry", "Humor", "Fantasy", "Kids", "Young Adult", "Childrens", "Juvenile", "Food And Drink", "Food"], "score": 4.29, "title": "Green Eggs and Ham"} ,
+{"ratings": 361476, "genres": ["Classics", "Historical Fiction", "Literature", "Academic", "School", "Novels", "Classics", "Classic Literature", "European Literature", "British Literature", "Literature", "19th Century", "Young Adult", "High School", "Cultural", "France"], "score": 3.69, "title": "A Tale of Two Cities"} ,
+{"ratings": 318684, "genres": ["Historical Fiction", "Book Club", "Contemporary", "Adult Fiction", "Novels", "Adult", "Literature", "Drama", "War", "Womens"], "score": 4.28, "title": "A Thousand Splendid Suns"} ,
+{"ratings": 264657, "genres": ["Classics", "Childrens", "Young Adult", "Historical Fiction", "Literature", "Fantasy", "Childrens", "Juvenile", "European Literature", "British Literature", "Classics", "Classic Literature", "Novels"], "score": 4.09, "title": "The Secret Garden"} ,
+{"ratings": 379283, "genres": ["Classics", "Romance", "Literature", "Historical Fiction", "European Literature", "British Literature", "Classics", "Classic Literature", "Novels", "Literature", "19th Century", "Womens Fiction", "Chick Lit", "Romance", "Historical Romance"], "score": 4.03, "title": "Sense and Sensibility"} ,
+{"ratings": 408982, "genres": ["Classics", "Poetry", "Fantasy", "Mythology", "Literature", "Academic", "School", "Fantasy", "Adventure", "Academic", "Read For School", "Epic", "Classics", "Classic Literature"], "score": 3.63, "title": "The Odyssey"} ,
+{"ratings": 140462, "genres": ["Classics", "Literature", "Historical Fiction", "Book Club", "Novels", "Literature", "American", "Classics", "Classic Literature", "Adult Fiction", "Literary Fiction", "Adult"], "score": 4.29, "title": "East of Eden"} ,
+{"ratings": 252814, "genres": ["Classics", "Literature", "Novels", "Cultural", "Russia", "Romance", "Book Club", "Adult", "Literature", "Russian Literature", "Literary Fiction", "Literature", "20th Century"], "score": 3.81, "title": "Lolita"} ,
+{"ratings": 252873, "genres": ["Book Club", "Young Adult", "World War II", "Holocaust", "History", "World War II", "Young Adult", "Teen", "Cultural", "Germany", "Historical Fiction", "Literature", "Classics", "Adult"], "score": 4.34, "title": "The Book Thief"} ,
+{"ratings": 131737, "genres": ["Classics", "Cultural", "Russia", "Literature", "Historical Fiction", "Romance", "Literature", "Russian Literature", "Novels", "Literature", "19th Century", "Classics", "Classic Literature", "Book Club"], "score": 3.97, "title": "Anna Karenina"} ,
+{"ratings": 261256, "genres": ["Non Fiction", "Classics", "History", "Autobiography", "Memoir", "World War II", "Holocaust", "Biography", "Academic", "School", "War", "Academic", "Read For School", "History", "World War II"], "score": 4.24, "title": "Night"} ,
+{"ratings": 410840, "genres": ["Classics", "Science Fiction", "Literature", "War", "Historical Fiction", "Novels", "Fantasy", "Literature", "American", "Humor", "Literary Fiction"], "score": 3.95, "title": "Slaughterhouse-Five"} ,
+{"ratings": 214954, "genres": ["Classics", "War", "Literature", "Humor", "Historical Fiction", "Novels", "Literature", "American", "Humor", "Comedy", "War", "Military", "Book Club"], "score": 3.95, "title": "Catch-22"} ,
+{"ratings": 352974, "genres": ["Book Club", "Fantasy", "Literature", "Adventure", "Novels", "Classics", "Philosophy", "Cultural", "India", "Contemporary", "Cultural", "Canada"], "score": 3.81, "title": "Life of Pi"} ,
+{"ratings": 259303, "genres": ["genre-scifi-future", "Fantasy", "Paranormal", "Young Adult", "Science Fiction", "Dystopia", "Science Fiction", "Aliens", "Adult", "Science Fiction Fantasy", "Romance", "Paranormal Romance", "Science Fiction", "Adult Fiction", "Fantasy", "Supernatural"], "score": 3.84, "title": "The Host"} ,
+{"ratings": 758621, "genres": ["Classics", "Science Fiction", "Science Fiction", "Dystopia", "Literature", "Novels", "Politics", "Academic", "School", "Science Fiction Fantasy", "Fantasy", "Young Adult", "High School"], "score": 4.04, "title": "1984"} ,
+{"ratings": 180817, "genres": ["Historical Fiction", "Book Club", "Historical Fiction", "Medieval", "Classics", "European Literature", "British Literature", "Epic", "Adult Fiction", "Novels", "Adult", "Fantasy"], "score": 4.22, "title": "The Pillars of the Earth"} ,
+{"ratings": 253714, "genres": ["Science Fiction", "Fantasy", "Classics", "Science Fiction Fantasy", "Novels", "Science Fiction", "Space Opera", "Speculative Fiction", "Adventure", "Epic", "Literature"], "score": 4.04, "title": "Dune"} ,
+{"ratings": 123026, "genres": ["Classics", "Fantasy", "Young Adult", "Animals", "Childrens", "Literature", "Adventure", "Novels", "Book Club", "Science Fiction Fantasy"], "score": 4.0, "title": "Watership Down"} ,
+{"ratings": 205179, "genres": ["Fantasy", "Classics", "Science Fiction Fantasy", "Adventure", "Fantasy", "Epic Fantasy", "Literature", "Fantasy", "High Fantasy", "Epic", "Novels", "Young Adult"], "score": 4.45, "title": "The Return of the King"} ,
+{"ratings": 228532, "genres": ["Young Adult", "Classics", "Academic", "School", "Realistic Fiction", "Academic", "Read For School", "Young Adult", "Teen", "Childrens", "Historical Fiction", "Young Adult", "Coming Of Age", "Drama"], "score": 3.97, "title": "The Outsiders"} ,
+{"ratings": 184062, "genres": ["Classics", "Romance", "Literature", "Historical Fiction", "European Literature", "British Literature", "Novels", "Literature", "19th Century", "Classics", "Classic Literature", "Womens Fiction", "Chick Lit", "Romance", "Historical Romance"], "score": 3.95, "title": "Emma"} ,
+{"ratings": 135013, "genres": ["Classics", "Book Club", "Historical Fiction", "Young Adult", "Literature", "Young Adult", "Coming Of Age", "Novels", "Adult", "Adult Fiction", "New York"], "score": 4.21, "title": "A Tree Grows in Brooklyn"} ,
+{"ratings": 607562, "genres": ["Book Club", "Womens Fiction", "Chick Lit", "Contemporary", "Novels", "Drama", "American", "Southern", "Womens", "Realistic Fiction", "Literature", "Cultural", "African American"], "score": 4.44, "title": "The Help"} ,
+{"ratings": 308894, "genres": ["Historical Fiction", "Cultural", "Africa", "Book Club", "Novels", "Literature", "Adult Fiction", "Classics", "Contemporary", "Religion", "Adult"], "score": 3.92, "title": "The Poisonwood Bible"} ,
+{"ratings": 174759, "genres": ["Cultural", "Ireland", "History", "Non Fiction", "Biography", "Autobiography", "Memoir", "Biography Memoir", "Literature", "Academic", "School", "Young Adult", "Coming Of Age", "Classics"], "score": 3.99, "title": "Angela's Ashes"} ,
+{"ratings": 227971, "genres": ["Science Fiction", "Apocalyptic", "Post Apocalyptic", "Science Fiction", "Dystopia", "Book Club", "Literature", "Horror", "Novels", "Classics", "Science Fiction", "Apocalyptic", "Contemporary"], "score": 3.93, "title": "The Road"} ,
+{"ratings": 170158, "genres": ["Science Fiction", "Dystopia", "Science Fiction", "Apocalyptic", "Horror", "Science Fiction Fantasy", "Suspense", "Novels", "Fantasy", "Paranormal", "Epic", "Adult", "Apocalyptic", "Post Apocalyptic"], "score": 4.29, "title": "The Stand"} ,
+{"ratings": 359190, "genres": ["Book Club", "Womens Fiction", "Chick Lit", "Drama", "Contemporary", "Adult", "Adult Fiction", "Young Adult", "Realistic Fiction", "Novels", "Family"], "score": 4.0, "title": "My Sister's Keeper"} ,
+{"ratings": 210989, "genres": ["genre-science-fiction", "genre-general-fiction-drama", "genre-political", "genre-political-gender-equality", "Science Fiction", "Dystopia", "Science Fiction", "Classics", "Literature", "Feminism", "Fantasy", "Book Club", "Cultural", "Canada", "Novels", "Speculative Fiction"], "score": 3.97, "title": "The Handmaid's Tale"} ,
+{"ratings": 601478, "genres": ["Poetry", "Childrens", "Classics", "Humor", "Young Adult", "Childrens", "Juvenile", "Childrens", "Picture Books", "Fantasy", "Kids", "Humor", "Funny"], "score": 4.2, "title": "Where the Sidewalk Ends"} ,
+{"ratings": 409350, "genres": ["Classics", "Horror", "Science Fiction", "Literature", "Fantasy", "Gothic", "Academic", "School", "Novels", "Classics", "Classic Literature", "Academic", "Read For School"], "score": 3.65, "title": "Frankenstein"} ,
+{"ratings": 161319, "genres": ["Classics", "Psychology", "Novels", "Poetry", "Literature", "American", "Feminism", "Mental Health", "Mental Illness", "Adult Fiction", "Book Club", "Adult"], "score": 3.9, "title": "The Bell Jar"} ,
+{"ratings": 100660, "genres": ["Poetry", "Classics", "Fantasy", "Mythology", "Literature", "Fantasy", "Academic", "School", "Epic", "Historical Fiction", "War", "Literature", "Ancient"], "score": 3.74, "title": "The Iliad"} ,
+{"ratings": 192572, "genres": ["Avid Readers:", "First Book: Genre: Classic", "Classics", "Literature", "Academic", "School", "Historical Fiction", "Novels", "European Literature", "British Literature", "Classics", "Classic Literature", "Literature", "19th Century", "Academic", "Read For School", "Young Adult", "High School"], "score": 3.65, "title": "Great Expectations"} ,
+{"ratings": 57883, "genres": ["Classics", "Mystery", "Short Stories", "Mystery", "Crime", "Mystery", "Detective", "Literature", "Adventure", "European Literature", "British Literature", "Thriller", "Mystery Thriller", "Literature", "19th Century"], "score": 4.22, "title": "The Adventures of Sherlock Holmes"} ,
+{"ratings": 31708, "genres": ["Classics", "Fantasy", "Science Fiction Fantasy", "Adventure", "Fantasy", "Epic Fantasy", "Literature", "Young Adult", "Fantasy", "High Fantasy", "Novels", "Science Fiction"], "score": 4.56, "title": "The Hobbit and The Lord of the Rings"} ,
+{"ratings": 188284, "genres": ["Classics", "Literature", "Psychology", "Novels", "Academic", "School", "Literature", "American", "Contemporary", "Classics", "Modern Classics", "Adult Fiction", "Young Adult", "High School"], "score": 4.14, "title": "One Flew Over the Cuckoo's Nest"} ,
+{"ratings": 121293, "genres": ["Classics", "Philosophy", "Literature", "Politics", "Novels", "Science Fiction", "Dystopia", "Science Fiction", "Economics", "Book Club", "Adult Fiction"], "score": 3.69, "title": "Atlas Shrugged"} ,
+{"ratings": 61684, "genres": ["Classics", "Cultural", "Russia", "Historical Fiction", "Literature", "Literature", "Russian Literature", "Novels", "War", "Literature", "19th Century", "Classics", "Classic Literature", "Romance"], "score": 4.04, "title": "War and Peace"} ,
+{"ratings": 121607, "genres": ["Classics", "Philosophy", "Literature", "Novels", "Architecture", "Politics", "Adult", "Literary Fiction", "Literature", "American", "Book Club"], "score": 3.8, "title": "The Fountainhead"} ,
+{"ratings": 119779, "genres": ["Classics", "Mystery", "Romance", "Gothic", "Book Club", "Historical Fiction", "Suspense", "Literature", "Novels", "Adult Fiction"], "score": 4.15, "title": "Rebecca"} ,
+{"ratings": 63413, "genres": ["Classics", "Cultural", "Russia", "Literature", "Literature", "Russian Literature", "Novels", "Philosophy", "Literature", "19th Century", "Classics", "Classic Literature", "Religion", "Literary Fiction"], "score": 4.26, "title": "The Brothers Karamazov"} ,
+{"ratings": 160903, "genres": ["Classics", "Historical Fiction", "Literature", "Cultural", "African American", "Novels", "Feminism", "Literature", "American", "Adult Fiction", "Womens", "Contemporary"], "score": 4.1, "title": "The Color Purple"} ,
+{"ratings": 167677, "genres": ["Historical Fiction", "Romance", "Fantasy", "Science Fiction", "Time Travel", "Romance", "Historical Romance", "Cultural", "Scotland", "Adult", "Book Club", "Womens Fiction", "Chick Lit", "Science Fiction"], "score": 4.06, "title": "Outlander"} ,
+{"ratings": 664483, "genres": ["Science Fiction", "Dystopia", "Adventure", "Young Adult", "Teen", "Apocalyptic", "Post Apocalyptic", "Science Fiction Fantasy", "Young Adult", "Action", "Book Club", "Science Fiction", "War"], "score": 4.04, "title": "Mockingjay"} ,
+{"ratings": 166434, "genres": ["Classics", "Science Fiction", "Science Fiction", "Dystopia", "Literature", "Novels", "Horror", "European Literature", "British Literature", "Classics", "Modern Classics", "Literature", "20th Century", "Science Fiction Fantasy"], "score": 3.93, "title": "A Clockwork Orange"} ,
+{"ratings": 143378, "genres": ["Classics", "Philosophy", "Literature", "Religion", "Spirituality", "Religion", "Buddhism", "European Literature", "German Literature", "Novels", "Academic", "School", "Historical Fiction"], "score": 3.89, "title": "Siddhartha"} ,
+{"ratings": 53570, "genres": ["Literature", "Novels", "Adventure", "Cultural", "Spain", "Humor", "Classics", "Historical Fiction", "Classics", "Classic Literature", "European Literature", "Spanish Literature", "Academic", "School"], "score": 3.78, "title": "Don Quixote"} ,
+{"ratings": 114324, "genres": ["Classics", "Literature", "Book Club", "Contemporary", "Novels", "Literary Fiction", "Adult Fiction", "Literature", "American", "Adult", "Humor"], "score": 4.19, "title": "A Prayer for Owen Meany"} ,
+{"ratings": 196170, "genres": ["Historical Fiction", "Book Club", "Religion", "Adult Fiction", "Womens", "Adult", "Literature", "Novels", "Christian", "Christian Fiction"], "score": 4.11, "title": "The Red Tent"}
+]
+
+// Make a lot of dummy nodes
+for (var i = 0; i < bigdata.length; i++) {
+  $("#me").append($("<div id='node" + i + "'> </div>"));
+}
+
+bigdata.sort(function(a, b) { return b.score - a.score; });
+
+for (var i = 0; i < bigdata.length; i++) {
+  $("#node" + i).html("<b>" + bigdata[i].title + "</b> (score " + bigdata[i].score + ") Genres: ")
+
+  for (var j = 0; j < 4; j++) {
+    (function (genre) {
+      var newnode = $("<a href='#'>" + genre + "</a>, ").click(function() {
+        alert("omggg click on " + genre);
+      });
+
+      $("#node" + i).append(newnode);
+
+    })(bigdata[i].genres[j]);
+  }
+}
+
+</script>
