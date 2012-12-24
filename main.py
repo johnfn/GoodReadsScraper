@@ -34,24 +34,27 @@ def dump_page(page):
   books = 0
 
   for tr in soup.find_all("tr"):
-    books += 1
+    try:
+      books += 1
 
-    sys.stderr.write("book " + str(books) + "\n")
-    bk = {}
+      sys.stderr.write("book " + str(books) + "\n")
+      bk = {}
 
-    scores = tr.find("span", class_="minirating").contents[1].split(" ")
+      scores = tr.find("span", class_="minirating").contents[1].split(" ")
 
-    bk['title'] = tr.contents[3].contents[3].get("title")
-    bk['score'] = float(scores[1])
-    bk['ratings'] = int(scores[5].replace(",", ""))
-    partial_link = tr.find("a", class_="bookTitle").get("href")
+      bk['title'] = tr.contents[3].contents[3].get("title")
+      bk['score'] = float(scores[1])
+      bk['ratings'] = int(scores[5].replace(",", ""))
+      partial_link = tr.find("a", class_="bookTitle").get("href")
 
-    link = "http://www.goodreads.com/" + partial_link
-    bk['genres'], bk['grantscore'] = get_info(link)
+      link = "http://www.goodreads.com/" + partial_link
+      bk['genres'], bk['grantscore'] = get_info(link)
 
-    print(json.dumps(bk), ",")
+      print(json.dumps(bk), ",")
+    except:
+      pass
 
-for x in range(1, 10):
+for x in range(26, 100):
   sys.stderr.write("=================== page " + str(x) + "======================" + "\n")
   dump_page(x)
 

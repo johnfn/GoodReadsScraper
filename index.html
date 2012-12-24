@@ -11,6 +11,7 @@
     </div>
     <div id="me">
     </div>
+    <a href="javascript:load_more()">Load more</a>
   </body>
 </html>
 
@@ -19,6 +20,17 @@
 
 <script language="javascript">
 
+Array.prototype.remove = function() {
+    var what, a = arguments, L = a.length, ax;
+    while (L && this.length) {
+        what = a[--L];
+        while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+        }
+    }
+    return this;
+};
+
 // Make a lot of dummy nodes
 for (var i = 0; i < bigdata.length; i++) {
   $("#me").append($("<div id='node" + i + "'> </div>"));
@@ -26,47 +38,75 @@ for (var i = 0; i < bigdata.length; i++) {
 
 bigdata.sort(function(a, b) { return b.grantscore - a.grantscore; });
 
-for (var i = 0; i < bigdata.length; i++) {
-  var dummy = $("#node" + i);
+var filters = ["Religion", "Vampires"]; // See below for rationale/snark
+var num_loaded = 0;
+var load_chunk = 150;
 
-  var searchlink = "http://www.goodreads.com/search?query=" + bigdata[i].title.replace(/ /g, "+");
+// TODO: Apply all extant filters to these new books.
+function load_more() { 
+  for (var i = num_loaded; i < num_loaded + load_chunk; i++) {
 
-  dummy.addClass('node');
-  dummy.html("<a href='" + searchlink + "' class='booktitle'>" + bigdata[i].title + "</a> (score " + bigdata[i].score + ") <br/> <span class='genres'>Genres:</span> ")
-  dummy.data('genres', bigdata[i].genres);
-  dummy.data('filters', 0);
+    if (bigdata[i].ratings < 977) continue; // There is definitely no bias here.
+    if (bigdata[i].title.toUpperCase().indexOf("BOX") != -1) continue;
+    if (bigdata[i].title.toUpperCase().indexOf("COLLECTION") != -1) continue;
+    if (bigdata[i].title.toUpperCase().indexOf("FIRST STEP 2") != -1) continue;
+    if (bigdata[i].title.toUpperCase().indexOf("COMPANION") != -1) continue;
+    if (bigdata[i].title.toUpperCase().indexOf("ONE DIRECTION") != -1) continue;
 
-  var MAX_GENRES = 4;
+    var filtered = false;
+    for (var j = 0; j < bigdata[i].genres.length; j++) {
+      if (filters.indexOf(bigdata[i].genres[j]) != -1) {
+        filtered = true;
+        break;
+      }
+    }
 
-  for (var j = 0; j < 4; j++) {
-    (function (genre, uid) {
-      var newnode = $("<a href='#'>" + genre + "</a>").click(function() {
-        $(".plusminus" + uid).toggle()
-      }).after("&nbsp;").after(
-        $("<span href='#' class='clicky plusminus" + uid + "'>&#x2713;</a>").click(function() {
-          filter(genre, true);
-          $(".plusminus" + uid).toggle()
-        }).hide()
-      ).after("&nbsp;").after(
-        $("<span href='#' class='clicky plusminus" + uid + "'>X</a>").click(function() {
-          filter(genre, false);
-          $(".plusminus" + uid).toggle()
-        }).hide()
-      );
+    if (filtered) continue;
 
-      dummy.append(newnode)
-      //if (j != MAX_GENRES - 1) dummy.append(",&nbsp;");
+    var dummy = $("#node" + i);
+    var searchlink = "http://www.goodreads.com/search?query=" + bigdata[i].title.replace(/ /g, "+");
 
-    })(bigdata[i].genres[j], i + "" + j);
+    dummy.addClass('node');
+    dummy.html("<a href='" + searchlink + "' class='booktitle'>" + bigdata[i].title + "</a> (score " + bigdata[i].score + ") <br/> <span class='genres'>Genres:</span> ")
+    dummy.data('genres', bigdata[i].genres);
+    dummy.data('filters', 0);
+
+    var MAX_GENRES = 4;
+
+    for (var j = 0; j < 4; j++) {
+      (function (genre, uid) {
+        var newnode = $("<a href='#'>" + genre + "</a>").after("&nbsp;").after(
+          $("<span href='#' class='clicky plusminus" + uid + "'>[X] </a>").click(function() {
+            filter(genre, false);
+            $(".plusminus" + uid).toggle()
+            filters.push(genre);
+          })
+        );
+
+        dummy.append(newnode);
+
+      })(bigdata[i].genres[j], i + "" + j);
+    }
   }
+
+  num_loaded += load_chunk;
+}
+
+function isEmpty( o ) {
+    for ( var p in o ) { 
+        if ( o.hasOwnProperty( p ) ) { return false; }
+    }
+    return true;
 }
 
 function filter(genre, want, unfilter) {
   if (typeof(unfilter) === 'undefined') unfilter = false;
 
-  for (var i = 0; i < bigdata.length; i++) {
+  for (var i = 0; i < num_loaded; i++) {
     var node = $("#node" + i);
     var genres = node.data()['genres'];
+
+    if (isEmpty(node.data())) continue;
 
     if (unfilter) {
       if ((genres.indexOf(genre) != -1) == want) {
@@ -91,13 +131,19 @@ function filter(genre, want, unfilter) {
       $node = $("<span class='clicky'>" + genre + " " + (want ? "&#x2713;" : "X") + "</span>").click(function() {
         filter(genre, want, true);
         $node.remove();
+        filters.remove(genre);
       })
     ).append("&nbsp;");
   }
 }
 
+// I don't want the site to proselytize!
 filter("Religion", false);
-filter("Vampires", false);
-filter("Classics", false);
+
+// ...
+filter("Vampires", false)
+
+load_more();
+load_more();
 
 </script>
